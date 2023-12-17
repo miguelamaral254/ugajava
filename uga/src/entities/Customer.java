@@ -12,17 +12,22 @@ public class Customer extends Account implements UserInterface {
 
     @Override
     public void login() {
-        System.out.print("Enter your name: ");
-        String nameInput = scanner.next();
-        System.out.print("Enter your password: ");
-        String passwordInput = scanner.next();
+        boolean loggedIn = false;
 
-        if (nameInput.equals(getName()) && passwordInput.equals(getPassword())) {
-            System.out.println("Login successful.");
-        } else {
-            System.out.println("Invalid credentials. Please try again.");
-            login();
-        }
+        do {
+            System.out.print("Enter your name: ");
+            String nameInput = scanner.next();
+            System.out.print("Enter your password: ");
+            String passwordInput = scanner.next();
+
+            if (nameInput.equals(getName()) && passwordInput.equals(getPassword())) {
+                System.out.println("Login successful.");
+                loggedIn = true;
+                showLoggedInMenu();
+            } else {
+                System.out.println("Invalid credentials. Please try again.");
+            }
+        } while (!loggedIn);
     }
 
     @Override
@@ -34,5 +39,33 @@ public class Customer extends Account implements UserInterface {
         super.setName(name);
         super.setPassword(password);
         System.out.println("Account created successfully.");
+
+        // Retorna diretamente ao menu principal (tela inicial)
+        showMainMenu();
+    }
+
+    private void showLoggedInMenu() {
+        System.out.println("Welcome, " + getName() + "!");
+     
+    }
+
+    @Override
+    public void showMainMenu() {
+        System.out.println("Welcome to E-commerce!");
+        System.out.println("1. Login");
+        System.out.println("2. Create an account");
+        System.out.print("Choose an option: ");
+        int option = scanner.nextInt();
+
+        switch (option) {
+            case 1:
+                login();
+                break;
+            case 2:
+                createAccount();
+                break;
+            default:
+                System.out.println("Invalid option. Please try again.");
+        }
     }
 }
