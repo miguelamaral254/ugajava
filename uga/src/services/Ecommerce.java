@@ -52,10 +52,13 @@ public class Ecommerce {
 
     public void run() {
         while (true) {
+            System.out.println("-------------------------");
             System.out.println("Welcome to E-commerce!");
+            System.out.println("-------------------------");
             System.out.println("1. Login");
             System.out.println("2. Create an account");
             System.out.print("Choose an option: ");
+            System.out.println("-------------------------");
             int option = scanner.nextInt();
 
             switch (option) {

@@ -1,9 +1,12 @@
 package entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Customer extends Account implements UserInterface {
-    private Scanner scanner; // Adicionado scanner como variável de membro
+    private Scanner scanner;
+    private static List<Customer> existingCustomers = new ArrayList<>();
 
     public Customer(String name, String password, Scanner scanner) {
         super(name, password);
@@ -15,9 +18,11 @@ public class Customer extends Account implements UserInterface {
         boolean loggedIn = false;
 
         do {
+            System.out.println("---------[LOGIN]----------------");
             System.out.print("Enter your name: ");
             String nameInput = scanner.next();
             System.out.print("Enter your password: ");
+            System.out.println("-------------------------");
             String passwordInput = scanner.next();
 
             if (nameInput.equals(getName()) && passwordInput.equals(getPassword())) {
@@ -34,27 +39,50 @@ public class Customer extends Account implements UserInterface {
     public void createAccount() {
         System.out.print("Enter your name: ");
         String name = scanner.next();
+
+        // Verifica se o usuário já existe
+        if (userExists(name)) {
+            System.out.println("Username already exists. Please choose a different username.");
+            // Retorna diretamente ao menu principal (tela inicial)
+            showMainMenu();
+            return; // Adiciona esta linha para sair do método e evitar login indevido
+        }
+
         System.out.print("Enter your password: ");
         String password = scanner.next();
         super.setName(name);
         super.setPassword(password);
         System.out.println("Account created successfully.");
 
-        // Retorna diretamente ao menu principal (tela inicial)
+        existingCustomers.add(new Customer(name, password, scanner));
+
         showMainMenu();
+    }
+
+    private static boolean userExists(String username) {
+        //Account verify
+        for (Customer customer : existingCustomers) {
+            if (customer.getName().equals(username)) {
+                return true; // Usr already taked
+            }
+        }
+        return false; 
     }
 
     private void showLoggedInMenu() {
         System.out.println("Welcome, " + getName() + "!");
-     
+        
     }
 
     @Override
     public void showMainMenu() {
+        System.out.println("-------------------------");
         System.out.println("Welcome to E-commerce!");
+        System.out.println("-------------------------");
         System.out.println("1. Login");
         System.out.println("2. Create an account");
         System.out.print("Choose an option: ");
+        System.out.println("-------------------------");
         int option = scanner.nextInt();
 
         switch (option) {
