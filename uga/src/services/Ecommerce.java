@@ -102,7 +102,7 @@ public class Ecommerce {
                             manageCart();
                             break;
                         case 3:
-                            customerService.runCustomerMenu(); // Chama o método runCustomerMenu da CustomerService
+                            customerService.runCustomerMenu(); 
                             break;
                         case 4:
                             System.out.println("Logged out successfully.");
