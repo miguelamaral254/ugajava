@@ -40,12 +40,12 @@ public class Customer extends Account implements UserInterface {
         System.out.print("Enter your name: ");
         String name = scanner.next();
 
-        // Verifica se o usuário já existe
+        
         if (userExists(name)) {
             System.out.println("Username already exists. Please choose a different username.");
-            // Retorna diretamente ao menu principal (tela inicial)
+            
             showMainMenu();
-            return; // Adiciona esta linha para sair do método e evitar login indevido
+            return; 
         }
 
         System.out.print("Enter your password: ");
@@ -60,10 +60,10 @@ public class Customer extends Account implements UserInterface {
     }
 
     private static boolean userExists(String username) {
-        //Account verify
+        
         for (Customer customer : existingCustomers) {
             if (customer.getName().equals(username)) {
-                return true; // Usr already taked
+                return true; 
             }
         }
         return false; 

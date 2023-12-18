@@ -99,8 +99,8 @@ public class Ecommerce {
                             break;
                         case 3:
                             System.out.println("Logged out successfully.");
-                            loggedIn = false; // Desloga o usuário
-                            user = null; // Limpa a referência do usuário
+                            loggedIn = false; 
+                            user = null; 
                             break;
                         default:
                             System.out.println("Invalid option. Please try again.");

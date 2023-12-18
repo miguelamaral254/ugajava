@@ -20,7 +20,7 @@ public class Cart {
     public int showCart() {
         if (items.isEmpty()) {
             System.out.println("Cart is empty.");
-            return 0;  // Retorna 0 para indicar que o carrinho está vazio
+            return 0;  
         } else {
             System.out.println("----------[Items]----------------");
             for (int i = 0; i < items.size(); i++) {
@@ -31,7 +31,7 @@ public class Cart {
             System.out.println("2 - Remove item");
             System.out.println("3 - Return to the main menu (Customer menu)");
             System.out.print("Choose an option: ");
-            return 1;  // Retorna 1 para indicar que o carrinho não está vazio
+            return 1;
         }
     }
 

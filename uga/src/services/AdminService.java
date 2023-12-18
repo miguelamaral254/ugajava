@@ -1,7 +1,5 @@
 package services;
 
-import entities.*;
-
 import java.util.Scanner;
 
 public class AdminService {
@@ -20,11 +18,11 @@ public class AdminService {
         int choice = scanner.nextInt();
         switch (choice) {
             case 1:
-                // Lógica para o Dashboard de vendas
+                
                 System.out.println("Acessando Dashboard de vendas...");
                 break;
             case 2:
-                // Lógica para gerenciar funcionários
+
                 System.out.println("Acessando Gerenciamento de funcionários...");
                 break;
             case 3:
@@ -39,11 +37,11 @@ public class AdminService {
         Scanner scanner = new Scanner(System.in);
         AdminService adminService = new AdminService(scanner);
 
-        // Usuário admin predefinido
+        
         String adminUsername = "admin";
         String adminPassword = "admin";
 
-        // Login do admin
+        
         System.out.print("Enter admin username: ");
         String usernameInput = scanner.next();
         System.out.print("Enter admin password: ");
