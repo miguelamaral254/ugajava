@@ -12,11 +12,13 @@ public class Ecommerce {
     private List<Processor> processors;
     private List<Memory> memories;
     private List<GraphicsCard> graphicsCards;
+    private AdminService adminService;
 
     public Ecommerce() {
         this.user = null;
         this.cart = new Cart();
         this.scanner = new Scanner(System.in);
+        this.adminService = new AdminService(scanner);
         initializeProducts();
     }
 
@@ -25,29 +27,20 @@ public class Ecommerce {
         Supplier asus = new Supplier("Asus");
         Supplier gigabyte = new Supplier("Gigabyte");
 
-        // Adicionando processadores
         processors = List.of(
-            new Processor("Intel Core i5", 199.99, galax),
-            new Processor("AMD Ryzen 7", 299.99, asus),
-            new Processor("Intel Core i9", 499.99, gigabyte)
-            // Adicione mais processadores, se necessário
-        );
+                new Processor("Intel Core i5", 199.99, galax),
+                new Processor("AMD Ryzen 7", 299.99, asus),
+                new Processor("Intel Core i9", 499.99, gigabyte));
 
-        // Adicionando memórias
         memories = List.of(
-            new Memory("8GB DDR4 RAM", 79.99, galax),
-            new Memory("16GB DDR4 RAM", 129.99, asus),
-            new Memory("32GB DDR4 RAM", 249.99, gigabyte)
-            // Adicione mais memórias, se necessário
-        );
+                new Memory("8GB DDR4 RAM", 79.99, galax),
+                new Memory("16GB DDR4 RAM", 129.99, asus),
+                new Memory("32GB DDR4 RAM", 249.99, gigabyte));
 
-        // Adicionando placas de vídeo
         graphicsCards = List.of(
-            new GraphicsCard("NVIDIA GTX 1660", 299.99, galax),
-            new GraphicsCard("AMD Radeon RX 5700", 449.99, asus),
-            new GraphicsCard("NVIDIA RTX 3080", 699.99, gigabyte)
-            // Adicione mais placas de vídeo, se necessário
-        );
+                new GraphicsCard("NVIDIA GTX 1660", 299.99, galax),
+                new GraphicsCard("AMD Radeon RX 5700", 449.99, asus),
+                new GraphicsCard("NVIDIA RTX 3080", 699.99, gigabyte));
     }
 
     public void run() {
@@ -63,23 +56,37 @@ public class Ecommerce {
 
             switch (option) {
                 case 1:
-                    user = new Customer("", "", scanner);
-                    user.login();
+                    System.out.print("Enter your name: ");
+                    String nameInput = scanner.next();
+                    System.out.print("Enter your password: ");
+                    String passwordInput = scanner.next();
+
+                    if (nameInput.equals("admin") && passwordInput.equals("admin")) {
+                        adminService.runAdminMenu();
+                    } else {
+                        user = new Customer(nameInput, passwordInput, scanner);
+                        user.login();
+                    }
                     break;
                 case 2:
                     user = new Customer("", "", scanner);
                     user.createAccount();
+                    break;
+                case 99:
+                    adminService.runAdminMenu();
                     break;
                 default:
                     System.out.println("Invalid option. Please try again.");
                     continue;
             }
 
-            if (user != null) {
-                while (true) {
+            if (user != null && user instanceof Customer) {
+                boolean loggedIn = true;
+
+                while (loggedIn) {
                     System.out.println("1. Add item");
                     System.out.println("2. Cart");
-                    System.out.println("3. Exit");
+                    System.out.println("3. Logout");
                     System.out.print("Choose an option: ");
                     int choice = scanner.nextInt();
 
@@ -91,8 +98,10 @@ public class Ecommerce {
                             manageCart();
                             break;
                         case 3:
-                            System.out.println("Exiting the system. Goodbye!");
-                            System.exit(0);
+                            System.out.println("Logged out successfully.");
+                            loggedIn = false; // Desloga o usuário
+                            user = null; // Limpa a referência do usuário
+                            break;
                         default:
                             System.out.println("Invalid option. Please try again.");
                             break;
@@ -126,13 +135,11 @@ public class Ecommerce {
                 return;
         }
 
-        // Display products in the chosen category
         System.out.println("------[Available products]-------");
         for (int i = 0; i < products.size(); i++) {
             System.out.println((i + 1) + ". " + products.get(i));
         }
 
-        // Select a product to add to the cart
         System.out.print("---------------------------------- ");
         int productChoice = scanner.nextInt();
 
@@ -148,24 +155,19 @@ public class Ecommerce {
         while (true) {
             int cartStatus = cart.showCart();
             if (cartStatus == 0) {
-                // Carrinho vazio, retorna para o menu do cliente
                 return;
             }
-    
+
             int cartOption = scanner.nextInt();
             switch (cartOption) {
                 case 1:
-                    // Go to checkout
-                    // Implemente a lógica de pagamento aqui
                     break;
                 case 2:
-                    // Remove item
                     System.out.print("Enter the item number to remove: ");
                     int itemIndex = scanner.nextInt();
                     cart.removeItem(itemIndex - 1);
                     break;
                 case 3:
-                    // Return to the main menu (Customer menu)
                     return;
                 default:
                     System.out.println("Invalid option. Please try again.");
