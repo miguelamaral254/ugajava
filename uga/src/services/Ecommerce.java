@@ -57,9 +57,9 @@ public class Ecommerce {
             System.out.println("-------------------------");
             System.out.println("1. Login");
             System.out.println("2. Create an account");
-            System.out.print("Choose an option: ");
             System.out.println("-------------------------");
             int option = scanner.nextInt();
+            System.out.println("-------------------------");
 
             switch (option) {
                 case 1:
@@ -103,11 +103,11 @@ public class Ecommerce {
     }
 
     private void addItemsToCart() {
-        System.out.println("Select a category:");
+        System.out.println("---[Select a category]---:");
         System.out.println("1. Processor");
         System.out.println("2. Memory");
         System.out.println("3. Graphics Card");
-        System.out.print("Enter your choice: ");
+        System.out.println("-------------------------");
         int categoryChoice = scanner.nextInt();
 
         List<? extends Product> products;
@@ -127,13 +127,13 @@ public class Ecommerce {
         }
 
         // Display products in the chosen category
-        System.out.println("Available products:");
+        System.out.println("------[Available products]-------");
         for (int i = 0; i < products.size(); i++) {
             System.out.println((i + 1) + ". " + products.get(i));
         }
 
         // Select a product to add to the cart
-        System.out.print("Enter the number of the product to add to the cart: ");
+        System.out.print("---------------------------------- ");
         int productChoice = scanner.nextInt();
 
         if (productChoice >= 1 && productChoice <= products.size()) {

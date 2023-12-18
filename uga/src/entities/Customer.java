@@ -22,8 +22,8 @@ public class Customer extends Account implements UserInterface {
             System.out.print("Enter your name: ");
             String nameInput = scanner.next();
             System.out.print("Enter your password: ");
-            System.out.println("-------------------------");
             String passwordInput = scanner.next();
+            System.out.println("-------------------------");
 
             if (nameInput.equals(getName()) && passwordInput.equals(getPassword())) {
                 System.out.println("Login successful.");
@@ -82,8 +82,8 @@ public class Customer extends Account implements UserInterface {
         System.out.println("1. Login");
         System.out.println("2. Create an account");
         System.out.print("Choose an option: ");
-        System.out.println("-------------------------");
         int option = scanner.nextInt();
+        System.out.println("-------------------------");
 
         switch (option) {
             case 1:
