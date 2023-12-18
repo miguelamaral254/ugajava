@@ -11,25 +11,30 @@ public class AdminService {
 
     public void runAdminMenu() {
         System.out.println("Admin Menu:");
-        System.out.println("1. Dashboard de vendas");
-        System.out.println("2. Gerenciar funcionários");
+        System.out.println("1. Sales dashboard");
+        System.out.println("2. Manage employees");
         System.out.println("3. Logout");
 
         int choice = scanner.nextInt();
         switch (choice) {
             case 1:
+                System.out.println("--------------------------------------");
+                System.out.println("Loading data...");
+                System.out.println("--------------------------------------");
+                break;
+                case 2:
                 
-                System.out.println("Acessando Dashboard de vendas...");
+                System.out.println("--------------------------------------");
+                System.out.println("Loading...");
+                System.out.println("--------------------------------------");
                 break;
-            case 2:
-
-                System.out.println("Acessando Gerenciamento de funcionários...");
-                break;
-            case 3:
-                System.out.println("Logout realizado.");
+                case 3:
+                System.out.println("--------------------------------------");
+                System.out.println("Until next time!");
+                System.out.println("--------------------------------------");
                 break;
             default:
-                System.out.println("Opção inválida.");
+                System.out.println("Invalid option. choose a valid option.");
         }
     }
 

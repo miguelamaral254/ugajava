@@ -21,7 +21,7 @@ public class CustomerService {
         System.out.println("1. View Profile");
         System.out.println("2. Update Profile");
         System.out.println("3. View Purchase History");
-        System.out.println("4. Go back");
+        System.out.println("4. Return");
 
         int choice = scanner.nextInt();
         switch (choice) {
@@ -42,17 +42,17 @@ public class CustomerService {
     }
 
     private void viewProfile() {
-        // Implementação para visualizar o perfil do cliente
+        
         System.out.println("Viewing customer profile.");
     }
 
     private void updateProfile() {
-        // Implementação para atualizar o perfil do cliente
+        
         System.out.println("Updating customer profile.");
     }
 
     private void viewPurchaseHistory() {
-        // Implementação para visualizar o histórico de compras do cliente
+        
         System.out.println("Viewing purchase history.");
     }
 }
