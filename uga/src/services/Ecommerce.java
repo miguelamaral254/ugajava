@@ -13,12 +13,15 @@ public class Ecommerce {
     private List<Memory> memories;
     private List<GraphicsCard> graphicsCards;
     private AdminService adminService;
+    private CustomerService customerService;
 
     public Ecommerce() {
         this.user = null;
         this.cart = new Cart();
         this.scanner = new Scanner(System.in);
         this.adminService = new AdminService(scanner);
+        this.customerService = new CustomerService(scanner);
+
         initializeProducts();
     }
 
@@ -86,7 +89,8 @@ public class Ecommerce {
                 while (loggedIn) {
                     System.out.println("1. Add item");
                     System.out.println("2. Cart");
-                    System.out.println("3. Logout");
+                    System.out.println("3. Customer Menu");
+                    System.out.println("4. Logout");
                     System.out.print("Choose an option: ");
                     int choice = scanner.nextInt();
 
@@ -98,6 +102,9 @@ public class Ecommerce {
                             manageCart();
                             break;
                         case 3:
+                            customerService.runCustomerMenu(); // Chama o método runCustomerMenu da CustomerService
+                            break;
+                        case 4:
                             System.out.println("Logged out successfully.");
                             loggedIn = false; 
                             user = null; 

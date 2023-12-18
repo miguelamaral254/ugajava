@@ -63,7 +63,7 @@ public class Customer extends Account implements UserInterface {
         
         for (Customer customer : existingCustomers) {
             if (customer.getName().equals(username)) {
-                return true; 
+                return true; // 
             }
         }
         return false; 

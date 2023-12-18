@@ -29,7 +29,7 @@ public class Cart {
             System.out.println("---------------------------------");
             System.out.println("1 - Go to checkout");
             System.out.println("2 - Remove item");
-            System.out.println("3 - Return to the main menu (Customer menu)");
+            System.out.println("3 - Return");
             System.out.print("Choose an option: ");
             return 1;
         }
