@@ -85,7 +85,7 @@ public class Ecommerce {
                             addItemsToCart();
                             break;
                         case 2:
-                            cart.showCart();
+                            manageCart();
                             break;
                         case 3:
                             System.out.println("Exiting the system. Goodbye!");
@@ -138,6 +138,35 @@ public class Ecommerce {
             System.out.println("Product added to the cart.");
         } else {
             System.out.println("Invalid choice. Please try again.");
+        }
+    }
+
+    private void manageCart() {
+        while (true) {
+            int cartStatus = cart.showCart();
+            if (cartStatus == 0) {
+                // Carrinho vazio, retorna para o menu do cliente
+                return;
+            }
+    
+            int cartOption = scanner.nextInt();
+            switch (cartOption) {
+                case 1:
+                    // Go to checkout
+                    // Implemente a lógica de pagamento aqui
+                    break;
+                case 2:
+                    // Remove item
+                    System.out.print("Enter the item number to remove: ");
+                    int itemIndex = scanner.nextInt();
+                    cart.removeItem(itemIndex - 1);
+                    break;
+                case 3:
+                    // Return to the main menu (Customer menu)
+                    return;
+                default:
+                    System.out.println("Invalid option. Please try again.");
+            }
         }
     }
 
